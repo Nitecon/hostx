@@ -1,0 +1,31 @@
+region               = "us-east-1"
+vpc_cidr             = "10.0.0.0/16"
+name                 = "prod-vpc"
+env                  = "prod"
+public_subnets_cidr  = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+private_subnets_cidr = []
+availability_zones   = ["us-east-1a", "us-east-1b", "us-east-1c"]
+# the name of your application
+app = "HostX"
+# where to find the compiled hostx distribution
+zipfile = "../../../.build/hostx.zip"
+# whether to use an inter (VPC bound) load balancer vs internet facing load balancer...
+use_internal_lb = "false"
+# provide the fqdn under route53 that will be updated to the hostx load balancer dns address
+fqdn = "test.example.com"
+# provide a route53 domain that terraform will update with the new alb dns
+r53domain = "example.com"
+lambda_logs_expiration_days = 1
+
+# Now for all the hostx configuration variables
+indexFile = "index.html" # update this if you're using different index files.
+contentBucket = "example-hostx-bucket"
+siteRoot = "siteRoot/" # the prefix / subdirectory where all the content lives (will be used as site root)
+errorsRoot = "errorsRoot/" # The subdirectory where you store errors files like 404.html or 500.html etc
+useRewriteMode = "true" # whether you want to use url rewriting back to the index file (for single page applications).
+useDebugMode = "true" # whether you want to use debug logging in cloudwatch. (Set to empty string to disable)
+cors = "" # This is the Access-Control-Allow-Origin header, and is discouraged to use * here, use your actual API server hostname here.
+noCachePaths = "/healthcheck.html" # This is a comma separated lists of paths that when requested the response back to the browser will be to not cache the file.
+CacheExpire = "30" # amount of seconds to cache objects default is 300 = 5 minutes
+CachePurge = "60" # amount of seconds until a full cache purge will occur
+UseCaching = "true" # whether or not to actually use built in caching (per instance)
