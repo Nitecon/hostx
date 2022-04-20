@@ -1,0 +1,26 @@
+# Ignore everything
+*
+# ...even if they are in subdirectories
+!*/
+# But not these files...
+!/.gitignore
+
+!*.go
+!go.sum
+!go.mod
+
+!README.md
+!LICENSE
+
+# !Makefile
+
+!build.sh
+!deploy.sh
+!destroy.sh
+!run.sh
+
+# include terraform files
+!*.tf
+!*.tfvars-Example
+
+
