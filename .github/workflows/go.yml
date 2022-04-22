@@ -26,7 +26,7 @@ jobs:
         run: npm install -g semantic-release
 
       - name: Get semantic release version
-        run: npx -p @semantic-release/exec -p semantic-release semantic-release --dry-run --plugins "@semantic-release/commit-analyzer,@semantic-release/exec" --analyzeCommits @semantic-release/commit-analyzer --verifyRelease @semantic-release/exec --verifyReleaseCmd 'echo ${nextRelease.version} > APP_VERSION.txt'
+        run: npx -p @semantic-release/exec -p semantic-release semantic-release --dry-run --plugins "@semantic-release/commit-analyzer,@semantic-release/exec" --analyzeCommits @semantic-release/commit-analyzer --verifyRelease @semantic-release/exec --verifyReleaseCmd "echo ${nextRelease.version} > APP_VERSION.txt"
 
       #- name: Release
       #  env:
