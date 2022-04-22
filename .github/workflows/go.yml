@@ -28,7 +28,7 @@ jobs:
       - name: Execute semver dryrun to retrieve version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: semantic-release --dry-run --branches main"
+        run: npx semantic-release --dry-run --branches main"
 
       - name: List workspace
         run: ls -alh
