@@ -23,4 +23,6 @@
 !*.tf
 !*.tfvars-Example
 
+# github secific items
+!.github/workflows/*.yml
 

@@ -1,0 +1,40 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+
+      - name: Git Version
+        uses: codacy/git-version@2.2.0
+
+      - name: Make binaries
+        uses: Nitecon/actions/golang@master
+        env:
+          APP_NAME: "HostX"
+
+      - name: Create tag based on AppVersion for generating changelog
+          uses: actions/github-script@v5
+          with:
+            script: |
+              github.rest.git.createRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: "refs/tags/${APP_VERSION}",
+                sha: context.sha
+              })
+
+      #- name: Test
+      #  run: go test -v ./...
