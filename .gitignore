@@ -19,8 +19,9 @@
 !destroy.sh
 !run.sh
 !.releaserc.json
-
+!Dockerfile
 !docs/*.png
+!examples/**
 
 # include terraform files
 !*.tf
