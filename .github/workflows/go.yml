@@ -22,25 +22,25 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      #- name: Setup semantic-release
-      #  run: npm install -g semantic-release
+      - name: Setup semantic-release
+        run: npm install -g semantic-release
 
-      - name: Get semantic release version
-        run: npx -p @semantic-release/exec -p semantic-release semantic-release --dry-run --no-ci --branches main > release_info.txt
+      - name: Install semantic release plugin(changelog)
+        run: npm install @semantic-release/git @semantic-release/changelog -D
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: semantic-release --dry-run --no-ci --branches main > release_info.txt
 
       - name: Print out release info
         run: cat release_info.txt
-
-      #- name: Release
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  run: semantic-release --dry-run --no-ci --branches main
 
       - name: List workspace
         run: ls -alh
 
       - name: store envar
-        run: echo "APP_SEMVER=$(cat APP_VERSION.txt)" >> $GITHUB_ENV
+        run: echo "APP_SEMVER=$(cat .VERSION)" >> $GITHUB_ENV
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
