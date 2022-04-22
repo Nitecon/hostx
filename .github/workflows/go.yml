@@ -28,7 +28,7 @@ jobs:
       - name: Execute semver dryrun to retrieve version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: semantic-release --dry-run --branches main && export APP_SEMVER=$(cat .VERSION) && echo "APP_SEMVER=${APP_SEMVER}" >> $GITHUB_ENV"
+        run: semantic-release --dry-run --branches main && ls -alh && export APP_SEMVER=$(cat .VERSION) && echo "APP_SEMVER=${APP_SEMVER}" >> $GITHUB_ENV"
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
