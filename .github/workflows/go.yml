@@ -22,11 +22,14 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Setup semantic-release
-        run: npm install -g semantic-release
+      #- name: Setup semantic-release
+      #  run: npm install -g semantic-release
 
       - name: Get semantic release version
-        run: npx -p @semantic-release/exec -p semantic-release semantic-release --dry-run --plugins "@semantic-release/commit-analyzer,@semantic-release/exec" --analyzeCommits @semantic-release/commit-analyzer --verifyRelease @semantic-release/exec --verifyReleaseCmd "echo ${nextRelease.version} > APP_VERSION.txt"
+        run: npx -p @semantic-release/exec -p semantic-release semantic-release --dry-run --no-ci --branches main > release_info.txt
+
+      - name: Print out release info
+        run: cat release_info.txt
 
       #- name: Release
       #  env:
