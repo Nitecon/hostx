@@ -16,7 +16,9 @@ we only have to worry about golang language specific vulnerabilities which is tr
 and the container side of the world.
 
 The final benefit is that you can run this locally on your desktop and point it to MinIO if you
-desire without the need of using S3 at all.
+desire without the need of using S3 at all.  And finally having to build Auth-N/Auth-Z for frontend
+applications requires a huge effort... But ALB can do this, how about having envar to specify your
+RBAC controls for your application in a very easy way?  See more about that later!
 
 ## What it is
 HostX is a serverless and container based webserver which intends to solve the majority of frontend
