@@ -26,15 +26,15 @@ jobs:
           APP_NAME: "HostX"
 
       - name: Create tag based on AppVersion for generating changelog
-          uses: actions/github-script@v5
-          with:
-            script: |
-              github.rest.git.createRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: "refs/tags/${APP_VERSION}",
-                sha: context.sha
-              })
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${APP_VERSION}",
+              sha: context.sha
+            })
 
       #- name: Test
       #  run: go test -v ./...
