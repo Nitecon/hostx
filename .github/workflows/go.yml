@@ -47,7 +47,6 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: actions/setup-node@v2
         run: semantic-release --no-ci --branches main
 
 
