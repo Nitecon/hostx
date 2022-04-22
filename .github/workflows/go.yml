@@ -17,29 +17,31 @@ jobs:
           ref: ${{ github.head_ref }}   # checkout the correct branch name
           fetch-depth: 0                # fetch the whole repo history
 
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.7
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          versionSpec: '5.x'
+          node-version: 'lts/*'
 
-      - name: Determine Version
-        uses: gittools/actions/gitversion/execute@v0.9.7
+      - name: Setup semantic-release
+        run: npm install -g semantic-release
+
+      - name: Install semantic release plugin(changelog)
+        run: npm install @semantic-release/git @semantic-release/changelog -D
+
+      - name: Get App Version
+        run: npx semantic-release --dry-run --branches main,$CI_COMMIT_REF_NAME --no-ci
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
         env:
           APP_NAME: "HostX"
 
-      - name: Create release with GitReleaseManager
-        uses: gittools/actions/gitreleasemanager/create@v0.9.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          owner: $GITHUB_REPOSITORY_OWNER
-          repository: hostx
-          milestone: $GITVERSION_SEMVER
-          name: "v${GITVERSION_SEMVER}"
-          assets: |
-            ${GITHUB_WORKSPACE}/.build/HostX.zip
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: semantic-release --no-ci --branches main
+
+
 
       #- name: Test
       #  run: go test -v ./...

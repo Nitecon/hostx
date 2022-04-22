@@ -18,6 +18,7 @@
 !deploy.sh
 !destroy.sh
 !run.sh
+!.releaserc.json
 
 # include terraform files
 !*.tf
