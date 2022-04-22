@@ -23,13 +23,10 @@ jobs:
           node-version: 'lts/*'
 
       - name: Setup semantic-release
-        run: npm install -g semantic-release
-
-      - name: Install semantic release plugin(changelog)
-        run: npm install @semantic-release/git @semantic-release/changelog -D
+        run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog
 
       - name: Get App Version
-        run: npx semantic-release --dry-run --branches main,$CI_COMMIT_REF_NAME --no-ci
+        run: semantic-release --dry-run --branches main --no-ci
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
