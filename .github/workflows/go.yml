@@ -31,7 +31,7 @@ jobs:
         run: semantic-release --dry-run --branches main
 
       - name: Store App Version for future step use
-        run: export APP_SEMVER=$(cat .VERSION) && echo "::set-env name=APP_SEMVER::$APP_SEMVER"
+        run: export APP_SEMVER=$(cat .VERSION) && echo "APP_SEMVER=${APP_SEMVER}" >> $GITHUB_ENV"
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
