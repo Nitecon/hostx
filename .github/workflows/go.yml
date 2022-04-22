@@ -28,19 +28,19 @@ jobs:
       - name: Install semantic release plugin(changelog)
         run: npm install @semantic-release/git @semantic-release/changelog -D
 
-      - name: Release
+      - name: Retrieve release info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: semantic-release --dry-run --no-ci --branches main > release_info.txt
 
-      - name: Print out release info
-        run: cat release_info.txt
+      - name: store envar
+        run: echo "APP_SEMVER=$(cat release_info.txt|grep -v "###"|grep "#" |sed -e 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')" >> $GITHUB_ENV
 
       - name: List workspace
         run: ls -alh
 
-      - name: store envar
-        run: echo "APP_SEMVER=$(cat .VERSION)" >> $GITHUB_ENV
+      - name: print app version
+        run: echo "The application version is ${APP_SEMVER}"
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
