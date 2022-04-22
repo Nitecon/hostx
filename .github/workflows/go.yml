@@ -17,24 +17,24 @@ jobs:
           ref: ${{ github.head_ref }}   # checkout the correct branch name
           fetch-depth: 0                # fetch the whole repo history
 
-      - name: Git Version
-        uses: codacy/git-version@2.2.0
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0.9.7
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
         env:
           APP_NAME: "HostX"
 
-      - name: Create tag based on AppVersion for generating changelog
-        uses: actions/github-script@v5
+      - name: Create release with GitReleaseManager
+        uses: gittools/actions/gitreleasemanager/create@v0.9.2
         with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: "refs/tags/${APP_VERSION}",
-              sha: context.sha
-            })
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: $GITHUB_REPOSITORY_OWNER
+          repository: hostx
+          milestone: $GITVERSION_SEMVER
+          name: "v${GITVERSION_SEMVER}"
+          assets: |
+            ${GITHUB_WORKSPACE}/.build/HostX.zip
 
       #- name: Test
       #  run: go test -v ./...
