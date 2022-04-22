@@ -25,10 +25,13 @@ jobs:
       - name: Setup semantic-release
         run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog
 
-      - name: Get App Version
+      - name: Execute semver dryrun to retrieve version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: semantic-release --dry-run --branches main
+
+      - name: Store App Version for future step use
+        run: export APP_SEMVER=$(cat .VERSION) && echo "::set-env name=APP_SEMVER::$APP_SEMVER"
 
       - name: Make binaries
         uses: Nitecon/actions/golang@main
