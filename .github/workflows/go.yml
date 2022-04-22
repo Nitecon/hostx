@@ -23,12 +23,15 @@ jobs:
           node-version: 'lts/*'
 
       - name: Setup semantic-release
-        run: npm install -g semantic-release @semantic-release/git @semantic-release/changelog
+        run: npm install -g semantic-release
 
-      - name: Execute semver dryrun to retrieve version
+      - name: Install semantic release plugin(changelog)
+        run: npm install @semantic-release/git @semantic-release/changelog -D
+
+      - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release --dry-run --branches main"
+        run: semantic-release --dry-run --no-ci --branches main
 
       - name: List workspace
         run: ls -alh
@@ -44,6 +47,7 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/setup-node@v2
         run: semantic-release --no-ci --branches main
 
 
