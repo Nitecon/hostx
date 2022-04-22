@@ -20,6 +20,8 @@
 !run.sh
 !.releaserc.json
 
+!docs/*.png
+
 # include terraform files
 !*.tf
 !*.tfvars-Example
