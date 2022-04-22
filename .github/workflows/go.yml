@@ -21,7 +21,7 @@ jobs:
         uses: codacy/git-version@2.2.0
 
       - name: Make binaries
-        uses: Nitecon/actions/golang@master
+        uses: Nitecon/actions/golang@main
         env:
           APP_NAME: "HostX"
 
