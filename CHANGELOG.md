@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Nitecon/hostx/compare/v1.2.0...v1.2.1) (2022-04-23)
+
+
+### Bug Fixes
+
+* update binary version to be based on branch/tag ([28d4035](https://github.com/Nitecon/hostx/commit/28d4035e688128c0a89ab09f99374a98346bcd88))
+
 # [1.2.0](https://github.com/Nitecon/hostx/compare/v1.1.0...v1.2.0) (2022-04-23)
 
 
