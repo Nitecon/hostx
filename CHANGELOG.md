@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/Nitecon/hostx/compare/v1.2.1...v1.2.2) (2022-04-23)
+
+
+### Bug Fixes
+
+* add example envars to docker container ([0c63f56](https://github.com/Nitecon/hostx/commit/0c63f56437bb7db7cb35d0c846ad711deef13492))
+
 ## [1.2.1](https://github.com/Nitecon/hostx/compare/v1.2.0...v1.2.1) (2022-04-23)
 
 
