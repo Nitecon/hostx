@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Nitecon/hostx/compare/v1.0.0...v1.1.0) (2022-04-23)
+
+
+### Bug Fixes
+
+* fixing the docker file to correct paths ([415b37f](https://github.com/Nitecon/hostx/commit/415b37f54c50f45b2b5e12399287ba824dbcadfd))
+
+
+### Features
+
+* adding new Dockerfile for hostx build ([3d4dbb0](https://github.com/Nitecon/hostx/commit/3d4dbb086f8a8ea5597b20698ad8b964caee175b))
+
 # 1.0.0 (2022-04-22)
 
 
