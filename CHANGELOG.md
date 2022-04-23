@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/Nitecon/hostx/compare/v1.2.2...v1.2.3) (2022-04-23)
+
+
+### Bug Fixes
+
+* add aws keys & secrets... can also be injected by other means (instance profile in k8s etc) ([4969193](https://github.com/Nitecon/hostx/commit/4969193a3c0ba95baf8db8358c3800512931f7cd))
+
 ## [1.2.2](https://github.com/Nitecon/hostx/compare/v1.2.1...v1.2.2) (2022-04-23)
 
 
