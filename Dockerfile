@@ -6,14 +6,14 @@ ENV GO111MODULE=auto \
     GOOS=linux \
     GOARCH=amd64
 
-RUN apk --update add ca-certificates
+RUN apk --update add ca-certificates git
 
 COPY . /go/src/appsource
 
 WORKDIR /go/src/appsource
 
 RUN [[ -f release_info.txt ]] && APP_SEMVER=$(cat release_info.txt|grep -v "###"|grep "#" |sed -e 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/') || APP_SEMVER="source"
-RUN go build -ldflags "-s -w -X main.version=${APP_SEMVER}" -o app cmd/main.go
+RUN go build -ldflags "-s -w -X main.version=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')" -o app cmd/main.go
 
 
 FROM scratch
