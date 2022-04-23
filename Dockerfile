@@ -36,6 +36,9 @@ ENV INDEX_FILE="index.html" \
     CACHE_PURGE_TTL=90 \
     USE_CACHE=true \
     STORAGE_TYPE=s3 \
+    AWS_DEFAULT_REGION=us-east-1 \
+    AWS_SECRET_ACCESS_KEY=foo \
+    AWS_ACCESS_KEY_ID=bar \
     HTTP_PORT=":8080"
 
 ENTRYPOINT ["/app"]
