@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/Nitecon/hostx/compare/v1.2.3...v1.2.4) (2022-04-23)
+
+
+### Bug Fixes
+
+* remove useless old RUN cmd ([27eaae0](https://github.com/Nitecon/hostx/commit/27eaae0893ceade34c7d9eee4b8dc7e57e0e8e7a))
+
 ## [1.2.3](https://github.com/Nitecon/hostx/compare/v1.2.2...v1.2.3) (2022-04-23)
 
 
