@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Nitecon/hostx/compare/v1.1.0...v1.2.0) (2022-04-23)
+
+
+### Features
+
+* new docker registry added under docker hub ([7507e30](https://github.com/Nitecon/hostx/commit/7507e3095d1f4aa76845712fccd7702720c2830a))
+
 # [1.1.0](https://github.com/Nitecon/hostx/compare/v1.0.0...v1.1.0) (2022-04-23)
 
 
