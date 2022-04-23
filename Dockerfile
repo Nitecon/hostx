@@ -24,5 +24,19 @@ COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /go/src/appsource/app .
 USER nobody
 
+ENV INDEX_FILE="index.html" \
+    ERROR_DIR="errors" \
+    BUCKET="hostx-example" \
+    PREFIX="mysite" \
+    USE_REWRITE="true" \
+    DEBUG="true" \
+    CORS="*" \
+    REQUEST_NO_CACHE="/testnocache" \
+    CACHE_EXPIRE_TTL=60 \
+    CACHE_PURGE_TTL=90 \
+    USE_CACHE=true \
+    STORAGE_TYPE=s3 \
+    HTTP_PORT=":8080"
+
 ENTRYPOINT ["/app"]
 EXPOSE 8080
