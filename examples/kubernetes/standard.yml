@@ -1,0 +1,103 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hostx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostx
+  namespace: hostx
+spec:
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: hostx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hostx
+    spec:
+      containers:
+        - env:
+            - name: INDEX_FILE
+              value: "index.html"
+            - name: ERROR_DIR
+              value: "errors"
+            - name: PREFIX
+              value: "mysite"
+            - name: USE_REWRITE
+              value: "true"
+            - name: DEBUG
+              value: "true"
+            - name: CORS
+              value: "*"
+            - name: REQUEST_NO_CACHE
+              value: "/testnocache"
+            - name: CACHE_EXPIRE_TTL
+              value: "60"
+            - name: CACHE_PURGE_TTL
+              value: "90"
+            - name: USE_CACHE
+              value: "true"
+            - name: STORAGE_TYPE
+              value: s3
+            - name: AWS_DEFAULT_REGION
+              value: "us-east-1"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: hostx-config
+                  key: AWS_KEY
+                  optional: false
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hostx-config
+                  key: AWS_SECRET
+                  optional: false
+            - name: BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: hostx-config
+                  key: BUCKET
+                  optional: false
+            - name: HTTP_PORT
+              value: ":8080"
+          image: nitecon/hostx
+          name: hostx
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: "500m"
+            requests:
+              memory: 32Mi
+              cpu: "00m"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hostx
+  namespace: hostx
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: hostx
+  type: LoadBalancer
