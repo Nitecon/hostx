@@ -72,7 +72,7 @@ technology prior to the application also.
 > **_NOTE:_** WIP Container should be up shortly
 
 HostX is capable of running in a container and as part of the build process produces the standard 
-docker container which is available at: [HostX Docker](https://www.docker.com/nitecon/hostx)
+docker container which is available at: [HostX Docker](https://hub.docker.com/r/nitecon/hostx)
 
 Example configuration for running HostX under kubernetes will be available under `examples` folder,
 shortly.  Which can be fronted by Service of type LoadBalancer or NginX Ingress etc.
