@@ -55,7 +55,6 @@ func main() {
 		log.Debug().Msg("Initializing S3 Storage")
 		s3.Svc = &s3.S3Service{Bucket: os.Getenv("BUCKET"), Prefix: os.Getenv("PREFIX")}
 		s3.Svc.Initialize()
-
 	}
 	if os.Getenv("AWS_LAMBDA_FUNCTION_NAME") != "" {
 		log.Info().Msgf("Operating Mode: %s", "lambda")

@@ -3,6 +3,7 @@ package s3
 import (
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
@@ -38,9 +39,9 @@ func (s *S3Service) Initialize() error {
 	}
 
 	s.Timeout = time.Duration(10 * time.Second)
-
+	creds := credentials.NewEnvCredentials()
 	log.Debug().Msgf("Using Bucket [%s] With Prefix [%s] on [%s]", s.Bucket, s.Prefix, s.Endpoint)
-	sess, err := session.NewSessionWithOptions(session.Options{Config: aws.Config{Region: aws.String(region), Endpoint: aws.String(s.Endpoint)}})
+	sess, err := session.NewSessionWithOptions(session.Options{Config: aws.Config{Region: aws.String(region), Endpoint: aws.String(s.Endpoint), Credentials: creds}})
 	if err != nil {
 		log.Debug().Msg("Could not initialize AWS session")
 		return err
