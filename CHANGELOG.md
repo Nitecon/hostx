@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/Nitecon/hostx/compare/v1.3.0...v1.3.1) (2022-04-26)
+
+
+### Bug Fixes
+
+* region can still be unset if not on aws ([52e2336](https://github.com/Nitecon/hostx/commit/52e2336c26e807b01d44e2ccb3dc504ba69e3d3a))
+
 # [1.3.0](https://github.com/Nitecon/hostx/compare/v1.2.4...v1.3.0) (2022-04-23)
 
 
