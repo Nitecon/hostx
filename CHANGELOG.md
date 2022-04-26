@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/Nitecon/hostx/compare/v1.3.1...v1.3.2) (2022-04-26)
+
+
+### Bug Fixes
+
+* set creds for minio, should still work for lambda from env ([c4f13fa](https://github.com/Nitecon/hostx/commit/c4f13faa4c25c9d65543ab99262a4a479860bb12))
+
 ## [1.3.1](https://github.com/Nitecon/hostx/compare/v1.3.0...v1.3.1) (2022-04-26)
 
 
