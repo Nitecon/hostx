@@ -23,8 +23,13 @@ type S3Service struct {
 func (s *S3Service) Initialize() error {
 	region := os.Getenv("AWS_REGION")
 	if region == "" {
-		region = os.Getenv("AWS_DEFAULT_REGION")
+		if os.Getenv("AWS_DEFAULT_REGION") == "" {
+			region = "us-east-1"
+		} else {
+			region = os.Getenv("AWS_DEFAULT_REGION")
+		}
 	}
+
 	if s.Endpoint == "" {
 		s.Endpoint = fmt.Sprintf("s3.%s.amazonaws.com", region)
 	}
