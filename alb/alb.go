@@ -10,12 +10,14 @@ import (
 	"strings"
 )
 
+// AlbResponseWriter provides a means to write the content to ALB standard.
 type AlbResponseWriter struct {
 	body       []byte
 	statusCode int
 	header     http.Header
 }
 
+// NewAlbResponseWriter provides a means to initialize a new response writer.
 func NewAlbResponseWriter() *AlbResponseWriter {
 	hdr := http.Header{}
 	hdr.Set("X-Server", "HostX")
